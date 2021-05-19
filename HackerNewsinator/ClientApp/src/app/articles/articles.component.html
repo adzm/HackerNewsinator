@@ -1,0 +1,15 @@
+<p *ngIf="searchText">Results for <em>{{searchText}}</em></p>
+<p *ngIf="!articles" id="loadingText"><em>Loading...</em></p>
+<p *ngIf="errorText" id="errorText">An error occurred: {{errorText}}</p>
+
+<div infiniteScroll (scrolled)="onScroll()">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="articles">
+    <tbody>
+      <tr *ngFor="let article of articles">
+        <td>{{ article.score }}</td>
+        <td><a href="{{article.url}}">{{ article.title }}</a></td>
+        <td><a href="https://news.ycombinator.com/item?id={{article.id}}">discuss</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
